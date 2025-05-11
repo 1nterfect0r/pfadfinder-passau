@@ -1,0 +1,110 @@
+name: Build & Deploy Hugo Site
+
+# 1. Läuft nur manuell
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deploy target (pages oder sftp)'
+        required: true
+        default: 'pages'
+      base_url:
+        description: 'Base URL for Hugo (z.B. https://user.github.io/repo/)'
+        required: true
+        default: 'https://1nterfect0r.github.io/pbw-website-quickstart/'
+
+
+# Jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # für artifact-upload
+      pages: write          # für GitHub Pages
+      id-token: write       # für OIDC-Signing (Pages benötigt es)
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # Fetch Hugo themes
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '>=1.22'
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          check-latest: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site with Hugo
+        run: hugo --gc --minify --baseURL "${{ inputs.base_url }}"
+      
+      - name: Upload artifact for pages
+        uses: actions/upload-pages-artifact@v3    # Für pages wird eine seperate upload action ausgeführt
+        if: ${{ inputs.target == 'pages' }}     
+        with:
+          name: public-dir-pages
+          path: "./public"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: ${{ inputs.target != 'pages' }}
+        with:
+          name: public-dir
+          path: ./public
+      
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ inputs.target == 'pages' }}
+    permissions:
+      contents: write
+      pages:    write
+      id-token: write
+    environment: github-pages
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5          # richtet das Environment ein :contentReference[oaicite:0]{index=0}
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4              # deployed das Artefakt :contentReference[oaicite:1]{index=1}
+        with:
+           artifact_name: public-dir-pages
+
+
+  deploy-sftp:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ inputs.target == 'sftp' }}
+    environment: sftp
+    steps:
+      - name: download artifact deploy
+        uses: actions/download-artifact@v4
+        with:
+          name: public-dir
+          path: ./public
+
+      - name: sFTP deploy
+        uses: wangyucode/sftp-upload-action@v2.0.4
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          localDir: "./public/"
+          remoteDir: ${{ secrets.SFTP_REMOTE_DIR }}
+          forceUpload: true 
+          # private-ssh-key: ${{ secrets.SFTP_SSH_KEY }}

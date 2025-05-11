@@ -1,0 +1,25 @@
+{
+    "name": "pbw-hugo",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "ghcr.io/devcontainers/features/hugo:1": {
+        "version": "latest",
+        "extended": true
+      },
+      "ghcr.io/devcontainers/features/node:1": {
+        "version": "lts"
+      },
+      "ghcr.io/devcontainers/features/go:1": {
+        "version": "latest"
+      }
+    },
+    "postCreateCommand": "hugo mod get -u && hugo mod npm pack && npm ci",
+    "forwardPorts": [1313],
+    "portsAttributes": {
+      "1313": {
+        "label": "Hugo Server",
+        "onAutoForward": "openBrowser"
+      }
+    }
+  }
+  

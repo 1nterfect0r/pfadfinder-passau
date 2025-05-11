@@ -1,0 +1,63 @@
+# Initial Setup 
+# -------------------------------------------------
+# Hugo Modules
+[module]
+  [module.hugoVersion]        # (optional) Mindestversion
+    extended = true
+    min = "0.123.0"
+
+  [[module.imports]]
+    path = "github.com/1nterfect0r/pbw_hugo_theme"
+    # version = "v1.0.0"     
+# -------------------------------------------------
+
+languageCode = 'de-de'
+title = 'Pfadfinder Test'
+
+# syntax highlight settings
+[markup]
+  [markup.highlight]
+    style = "dracula"
+
+
+[params]
+    name = "Pfadfinder Test"
+    description = "Wir bieten Gruppenstunden für Kinder und Jugendliche an."
+    favicon = "/favicon/favicon.ico"
+    hasMembersArea = false  # Mitgleiderbereich als Link im footer anzeigen
+
+  [[params.contacts]]
+    name = "Ina"
+    role = "Stammesführerin"
+    email = "zu.ersetzen@pbw.org"
+    phone = "+43 123 456789"
+
+
+  [params.impressum]
+    name = "Ina Mustermann"
+    address = "Tolle Straße, 12"
+    zipCity = "12345 Ort"
+    phone = "+43 123 456789"
+    email = "zu.ersetzen@pbw.org"
+
+    # Falls vorhanden bitte füllen (bei e.V. immer Pflicht!):
+    registerCourt = ""
+    registerNumber = ""
+
+    [params.impressum.representatives]
+      chairperson1 = ""
+      chairperson2 = ""
+      treasurer = ""
+
+  [params.privacy]
+    organizationNameNominativ = "Pfadfinder Passau"  # {{ .Site.Params.privacy.organizationNameNominativ }}
+    organizationNameGenitiv = "der Pfadfinder Passau" # {{ .Site.Params.privacy.organizationNameGenitiv }}
+    organizationNameDativ = "den Pfadfindern Passau" # {{ .Site.Params.privacy.organizationNameDativ }}
+    organizationNameAkkusativ = "die Pfadfinder Passau" # {{ .Site.Params.privacy.organizationNameAkkusativ }}
+    contact_name = "Ina Mustermann"
+    contact_address = "Tolle Straße, 12"
+    contact_zipCity = "12345 Ort"
+    contact_country = "Deutschland"
+    contact_phone = "+43 123 456789"
+    contact_email = "zu.ersetzen@pbw.org"
+    
