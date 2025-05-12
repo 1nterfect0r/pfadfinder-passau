@@ -7,11 +7,11 @@ on:
       target:
         description: 'Deploy target (pages oder sftp)'
         required: true
-        default: 'pages'
+        default: 'sftp'
       base_url:
         description: 'Base URL for Hugo (z.B. https://user.github.io/repo/)'
         required: true
-        default: 'https://1nterfect0r.github.io/pbw-website-quickstart/'
+        default: 'https://pfadfinder-passau.org/'
 
 
 # Jobs
