@@ -41,12 +41,12 @@ title = 'Pfadfinder*innenstamm Passauer Wildschweine e.V'
     email = "fiona.pigal@pbw.org"
 
     # Diese Felder sind leer, da sie für diesen Verein nicht relevant sind.
-    registerCourt = ""
-    registerNumber = ""
+    registerCourt = "Amtsgerichts Passau"
+    registerNumber = "VR 201190"
 
     [params.impressum.representatives]
-      chairperson1 = ""
-      chairperson2 = ""
+      chairperson1 = "Fiona Marlene Pigal"
+      chairperson2 = "Nico Kavermann"
       treasurer = ""
 
   [params.privacy]
