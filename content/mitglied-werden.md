@@ -11,8 +11,22 @@ description = "Erfahre, wann und wo unsere Gruppenstunden stattfinden und welche
 ### Nächste Gruppenstunden
 Wir bieten aktuell nur Gruppenstunden für die Alterstufen "Wölflinge" und "Pfadfinder" an. Also **ab 7 Jahren (und für interessierte Eltern)**.
 
-- **Wann:** Ab dem 12. November 2024, alle zwei Wochen, dienstags um 18:00 Uhr
-- **Wo:** Abwechselnd im Haus der Generationen (Heiliggeiststraße 3, 94032 Passau) und im Neuburgerwald
+- **Wann:** Jeden Dienstag um 18:00 Uhr 
+- **Wo:** Abwechselnd im Haus der Generationen (Heiliggeiststraße 3, 94032 Passau) und am Parkplatz Neuburger Wald
+- {{< details summary="Klicke hier für die nächsten Termine" >}}
+- 13.5. Wald
+- 20.5. Haus der Generationen
+- 27.5. Wald
+- 3.6. Haus der Generationen
+- 10./17.6. FERIEN
+- 24.6. Wald
+- 1.7. Haus der Generationen
+- 8.7. Wald
+- 15.7. Haus der Generationen
+- 22.7. Haus der Generationen
+- 29.7. Wald
+- SOMMERFERIEN
+{{< /details >}}
 
 **→ Schnupper einfach unverbindlich vorbei und erlebe eine Gruppenstunde!**  
 **→ Bitte melde dich vorher kurz per E-Mail über unsere [Kontaktseite](/kontakt/), damit wir dich optimal willkommen heißen können.**
